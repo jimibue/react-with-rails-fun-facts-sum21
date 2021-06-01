@@ -1,5 +1,5 @@
 class Api::FactsController < ApplicationController
-    before_action :set_fact, only: [:show, :update, :delete]
+    before_action :set_fact, only: [:show, :update, :destroy]
 
     def index
         render json: Fact.all
@@ -24,6 +24,10 @@ class Api::FactsController < ApplicationController
         else
          render json: {errors: @fact.errors.full_messages}, status: :unprocessable_entity
         end
+     end
+
+     def destroy
+        render json: @fact.destroy
      end
 
     private
